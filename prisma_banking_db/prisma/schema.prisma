@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model customers {
+  customer_id Int          @id @default(autoincrement())
+  name        String?
+  email       String?
+  phone       String?
+
+  // Relations
+  accounts     accounts[]
+  loans        loans[]
+
+  @@map("customers")
+}
+
+model branches {
+  branch_id   Int        @id @default(autoincrement())
+  branch_name String?
+  city        String?
+
+  // Relations
+  accounts   accounts[]
+
+  @@map("branches")
+}
+
+model accounts {
+  account_id   Int       @id @default(autoincrement())
+  customer_id  Int
+  branch_id    Int
+  account_type String?
+  balance      Decimal   @default(0.00)
+
+  // Relations
+  customer     customers @relation(fields: [customer_id], references: [customer_id])
+  branch       branches  @relation(fields: [branch_id], references: [branch_id])
+  transactions transactions[]
+
+  @@map("accounts")
+}
+
+model transactions {
+  transaction_id   Int      @id @default(autoincrement())
+  account_id       Int
+  amount           Decimal?
+  transaction_type String?
+  transaction_date DateTime @default(now())
+
+  // Relation
+  account accounts @relation(fields: [account_id], references: [account_id])
+
+  @@map("transactions")
+}
+
+model loans {
+  loan_id       Int       @id @default(autoincrement())
+  customer_id   Int
+  loan_type     String?
+  amount        Decimal?
+  interest_rate Decimal?
+
+  // Relations
+  customer      customers      @relation(fields: [customer_id], references: [customer_id])
+  payments      loan_payments[]
+
+  @@map("loans")
+}
+
+model loan_payments {
+  payment_id   Int      @id @default(autoincrement())
+  loan_id      Int
+  amount       Decimal?
+  payment_date DateTime @default(now())
+
+  // Relation
+  loan loans @relation(fields: [loan_id], references: [loan_id])
+
+  @@map("loan_payments")
+}
+
+
+
+
+
+
+
+
+
+// 5️⃣ Why do we need employees[] if the FK is in employees?
+ 
+// Great question 👍
+ 
+// Because relations are bi-directional in Prisma
+ 
+// Foreign key lives in employees
+ 
+// But Prisma allows you to navigate both ways
+ 
+// So you can:
+ 
+// From employee → department
+
+// employee.department
+ 
+// From department → employees
+
+// department.employees
+ 
+ 
+// Without the employees[] field:
+ 
+// Prisma would still enforce the FK
+ 
+// But you could not query employees from a department easily
+ 
