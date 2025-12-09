@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model emp {
+  empid    Int       @id @default(autoincrement())
+  ename    String?   @db.VarChar(50)
+  jobtitle String?   @db.VarChar(50)
+  joindate DateTime? @db.Date
+  salary   Decimal?  @db.Decimal(10, 2)
+  deptno   Int?
+  dept     String?   @db.VarChar(50)
+}
+
+model users {
+  id   Int     @id @default(autoincrement())
+  name String? @db.VarChar(100)
+  age  Int?
+}
