@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: cognine@123
+      POSTGRES_DB: Banking
+    ports:
+      - "5000:5000"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: node_app
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgresql://postgres:cognine%40123@db:5432/Banking?schema=public"
+    ports:
+      - "3000:3000"
+    command: ["npm","run","dev"]
+
+volumes:
+  postgres_data:

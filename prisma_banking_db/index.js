@@ -5,6 +5,64 @@ const app = express();
 
 app.use(express.json());
 
+async function run() {
+  try {
+    const customer = await prisma.customers.create({
+      data: {
+        name: "John Doe",
+        email: "john@example.com",
+        phone: "999888777"
+      }
+    });
+
+    const branch = await prisma.branches.create({
+      data: {
+        branch_name: "Main Branch",
+        city: "Hyderabad"
+      }
+    });
+
+    const account = await prisma.accounts.create({
+      data: {
+        customer_id: customer.customer_id,
+        branch_id: branch.branch_id,
+        account_type: "Savings",
+        balance: 5000.00
+      }
+    });
+
+    const txn = await prisma.transactions.create({
+      data: {
+        account_id: account.account_id,
+        amount: 1000.00,
+        transaction_type: "Deposit"
+      }
+    });
+
+    const loan = await prisma.loans.create({
+      data: {
+        customer_id: customer.customer_id,
+        loan_type: "Car Loan",
+        amount: 800000.00,
+        interest_rate: 7.5
+      }
+    });
+
+    const payment = await prisma.loan_payments.create({
+      data: {
+        loan_id: loan.loan_id,
+        amount: 15000.00
+      }
+    });
+
+    console.log("Data inserted successfully");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+run();
+
 // CREATE customer
 app.post("/customers", async (req, res) => {
   try {

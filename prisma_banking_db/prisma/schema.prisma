@@ -19,7 +19,7 @@ model customers {
   @@map("customers")
 }
 
-model branches {
+model branches2 {
   branch_id   Int        @id @default(autoincrement())
   branch_name String?
   city        String?
@@ -27,7 +27,7 @@ model branches {
   // Relations
   accounts   accounts[]
 
-  @@map("branches")
+ @@map("branches2")
 }
 
 model accounts {
@@ -39,7 +39,7 @@ model accounts {
 
   // Relations
   customer     customers @relation(fields: [customer_id], references: [customer_id])
-  branch       branches  @relation(fields: [branch_id], references: [branch_id])
+  branch       branches2  @relation(fields: [branch_id], references: [branch_id])
   transactions transactions[]
 
   @@map("accounts")
@@ -84,6 +84,10 @@ model loan_payments {
   @@map("loan_payments")
 }
 
+model employees2 {
+  id Int @id @default(autoincrement())
+  name1 String @unique
+}
 
 
 
@@ -92,30 +96,3 @@ model loan_payments {
 
 
 
-// 5️⃣ Why do we need employees[] if the FK is in employees?
- 
-// Great question 👍
- 
-// Because relations are bi-directional in Prisma
- 
-// Foreign key lives in employees
- 
-// But Prisma allows you to navigate both ways
- 
-// So you can:
- 
-// From employee → department
-
-// employee.department
- 
-// From department → employees
-
-// department.employees
- 
- 
-// Without the employees[] field:
- 
-// Prisma would still enforce the FK
- 
-// But you could not query employees from a department easily
- 
