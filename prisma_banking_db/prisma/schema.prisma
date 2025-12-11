@@ -1,9 +1,15 @@
 generator client {
   provider = "prisma-client-js"
+
 }
 
+// datasource db {
+//   provider = "postgresql"
+//   schemas = ["customer_schema","branch_schema","account_schema","transaction_schema","loan_schema","loan_payment_schema","employee_schema"]
+// }
 datasource db {
   provider = "postgresql"
+  schemas= ["customer_schema","branch_schema","account_schema","transaction_schema","loan_schema","loan_payment_schema","employee_schema"]
 }
 
 model customers {
@@ -13,21 +19,21 @@ model customers {
   phone       String?
 
   // Relations
-  accounts     accounts[]
-  loans        loans[]
+  accounts accounts[]
+  loans    loans[]
 
-  @@map("customers")
+  @@map("customers_new")
+  @@schema("customer_schema")
 }
 
-model branches2 {
+model branches {
   branch_id   Int        @id @default(autoincrement())
   branch_name String?
   city        String?
+  accounts    accounts[]
 
-  // Relations
-  accounts   accounts[]
-
- @@map("branches2")
+  @@map("branches_new")
+  @@schema("branch_schema")
 }
 
 model accounts {
@@ -39,10 +45,11 @@ model accounts {
 
   // Relations
   customer     customers @relation(fields: [customer_id], references: [customer_id])
-  branch       branches2  @relation(fields: [branch_id], references: [branch_id])
+  branch       branches  @relation(fields: [branch_id], references: [branch_id])
   transactions transactions[]
 
-  @@map("accounts")
+  @@map("accounts_new")
+  @@schema("account_schema")
 }
 
 model transactions {
@@ -56,6 +63,7 @@ model transactions {
   account accounts @relation(fields: [account_id], references: [account_id])
 
   @@map("transactions")
+  @@schema("transaction_schema")
 }
 
 model loans {
@@ -66,10 +74,11 @@ model loans {
   interest_rate Decimal?
 
   // Relations
-  customer      customers      @relation(fields: [customer_id], references: [customer_id])
-  payments      loan_payments[]
+  customer customers      @relation(fields: [customer_id], references: [customer_id])
+  payments loan_payments[]
 
   @@map("loans")
+  @@schema("loan_schema")
 }
 
 model loan_payments {
@@ -82,17 +91,12 @@ model loan_payments {
   loan loans @relation(fields: [loan_id], references: [loan_id])
 
   @@map("loan_payments")
+  @@schema("loan_payment_schema")
 }
 
 model employees2 {
-  id Int @id @default(autoincrement())
+  id    Int    @id @default(autoincrement())
   name1 String @unique
+
+  @@schema("employee_schema")
 }
-
-
-
-
-
-
-
-
