@@ -65,39 +65,51 @@ app.use(express.json());
 
 // CREATE customer
 
-app.get("/branch", async (req, res) =>{
+app.get("/branch/1/accounts/count", async (req, res) => {
   try {
-    const costomers = await prisma.branch_schema.branches.aggregate({
-      _count: {
-        account: true
-      },
-      where: { branch_id: Number(1)},
+    const count = await prisma.accounts.count({
+      where: { branch_id: 1 }
+    });
+
+    res.json({ account_count: count });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+app.get("/branch", async (req, res) => {
+  try {
+    const branches = await prisma.branches.findMany({
+      where: { branch_id: 1 },
       include: {
         accounts: true,
-        branches: true,
       }
-    })
-    res.json(costomers);
-  } catch(err) {
+    });
 
+    res.json(branches);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
   }
-})
+});
 
-app.get("/branch", async (req, res) =>{
-  try {
-    const costomers = await prisma.branch_schema.branches.findMany({ 
-      where: { branch_id: Number(1)},
-      include: {
-        accounts: true,
-        branches: true,
-      }
-    })
-    // res.json(costomers);
-    res.json(length(costomers));
-  } catch(err) {
-    console.log("Error ")
-  }
-})
+
+// app.get("/branch", async (req, res) =>{
+//   try {
+//     const costomers = await prisma.branch_schema.branches.findMany({ 
+//       where: { branch_id: Number(1)},
+//       include: {
+//         accounts: true,
+//         branches: true,
+//       }
+//     })
+//     // res.json(costomers);
+//     res.json(length(costomers));
+//   } catch(err) {
+//     console.log("Error ")
+//   }
+// })
 
 // app.post("/customers", async (req, res) => {
 //   try {
