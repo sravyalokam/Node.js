@@ -1,7 +1,7 @@
 import express from "express";
 import { loginAccount, registerAccount, getUserProfile } from "../controllers/auth.controller.js";
 import { validateBody, registerSchema, validateParams, userIdParamSchema, loginSchema } from "../middleware/validations.middleware.js";
-import { authenticate } from "../middleware/auth.middleware.js";
+import { authenticate, authorizeRoles } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
@@ -10,6 +10,13 @@ router.post("/login", validateBody(loginSchema), loginAccount);
 router.post("/register", validateBody(registerSchema), registerAccount);
 
 // Protected route
-router.get("/profile/:id", authenticate, validateParams(userIdParamSchema), getUserProfile);
+router.get(
+  "/profile/:id",
+  authenticate,                 
+  authorizeRoles("user", "admin"), 
+  validateParams(userIdParamSchema),
+  getUserProfile                
+);
+
 
 export default router;

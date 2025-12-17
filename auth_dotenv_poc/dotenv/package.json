@@ -16,7 +16,11 @@
     "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.1.0",
     "bcrypt": "^6.0.0",
+    "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
+    "passport": "^0.7.0",
+    "passport-azure-ad": "^4.3.5",
+    "passport-microsoft": "^2.1.0",
     "pg": "^8.16.3",
     "prisma": "^7.1.0"
   }
