@@ -1,7 +1,10 @@
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import csrf from "csurf";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser()); 
 app.use(passport.initialize());
 
 
@@ -13,19 +16,36 @@ dotenv.config({
   path: `.env.${ENV}`
 });
 
+const csrfProtection = csrf({
+  cookie: true              
+});
+
 // Read env variables
 console.log("Environment:", process.env.NODE_ENV);
-console.log("Database:", process.env.DB_NAME);
-console.log("Secret:", process.env.SECRET);
+// console.log("Database:", process.env.DB_NAME);
+// console.log("Secret:", process.env.SECRET);
 
 import passport from "passport";
 import "./config/passport.microsoft.js";
 import express from "express";
 import authRoutes from "./routes/login.routes.js";
 import microsoftAuthRoutes from "./routes/microsoft_login.routes.js";
+
 // Mount your routes
-app.use("/app", authRoutes);
+app.get("/app/csrf-token", csrfProtection, (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
+app.use("/app", csrfProtection, authRoutes);
 app.use("/app/auth/microsoft", microsoftAuthRoutes);
+
+if (ENV === "production") {
+  import("./routes/google_login.routes.js").then((googleRoutes) => {
+    app.use("/app/auth/google", googleRoutes.default);
+    console.log("Google Auth enabled in production.");
+  });
+} else {
+  console.log("Google Auth is disabled in non-production environment.");
+}
 
 // Start the server
 const PORT = process.env.PORT || 3000;

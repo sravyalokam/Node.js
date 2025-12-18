@@ -12,12 +12,21 @@ export const generateRefreshToken = (user) =>
 
 export const registerAccount = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body; // include role
+
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) return res.status(409).json({ message: "User already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await prisma.user.create({ data: { email, password: hashedPassword } });
+
+    // Pass role to Prisma; default to "user" if missing
+    const user = await prisma.user.create({
+      data: { 
+        email, 
+        password: hashedPassword,
+        role: role || "user"
+      },
+    });
 
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);

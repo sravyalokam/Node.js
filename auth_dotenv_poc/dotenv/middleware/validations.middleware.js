@@ -15,13 +15,18 @@ export const registerSchema = Joi.object({
 
 // General middleware to validate request body
 export const validateBody = (schema) => (req, res, next) => {
-  const { error } = schema.validate(req.body, { abortEarly: false }); // show all errors
+  const { error, value } = schema.validate(req.body, { 
+    abortEarly: false, 
+    allowUnknown: true // allow extra fields like role
+  }); 
   if (error) {
     return res.status(400).json({
       message: "Validation error",
       details: error.details.map((d) => d.message),
     });
   }
+
+  req.body = value; // overwrite req.body with validated data
   next();
 };
 
@@ -30,12 +35,14 @@ export const userIdParamSchema = Joi.object({
 });
 
 export const validateParams = (schema) => (req, res, next) => {
-  const { error } = schema.validate(req.params, { abortEarly: false });
+  const { error, value } = schema.validate(req.params, { abortEarly: false });
   if (error) {
     return res.status(400).json({
       message: "Params validation error",
       details: error.details.map(d => d.message)
     });
   }
+
+  req.params = value; // optional: overwrite params with validated value
   next();
 };
