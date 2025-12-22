@@ -17,6 +17,7 @@
     "@prisma/client": "^7.1.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "csurf": "^1.11.0",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
@@ -24,6 +25,7 @@
     "passport-azure-ad": "^4.3.5",
     "passport-microsoft": "^2.1.0",
     "pg": "^8.16.3",
-    "prisma": "^7.1.0"
+    "prisma": "^7.1.0",
+    "zod": "^4.2.1"
   }
 }

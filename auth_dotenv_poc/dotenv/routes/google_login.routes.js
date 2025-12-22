@@ -30,31 +30,44 @@ router.get("/callback", async (req, res) => {
   if (!code) return res.status(400).send("No code provided");
 
   try {
-    // Exchange code for access token
-    const tokenResponse = await axios.post("https://oauth2.googleapis.com/token", null, {
-      params: {
-        code,
-        client_id: process.env.GOOGLE_CLIENT_ID,
-        client_secret: process.env.GOOGLE_CLIENT_SECRET,
-        redirect_uri: process.env.GOOGLE_REDIRECT_URI,
-        grant_type: "authorization_code",
-      },
-    });
+    const tokenResponse = await axios.post(
+      "https://oauth2.googleapis.com/token",
+      null,
+      {
+        params: {
+          code,
+          client_id: process.env.GOOGLE_CLIENT_ID,
+          client_secret: process.env.GOOGLE_CLIENT_SECRET,
+          redirect_uri: process.env.GOOGLE_REDIRECT_URI,
+          grant_type: "authorization_code",
+        },
+      }
+    );
 
     const accessToken = tokenResponse.data.access_token;
+    const refreshToken = tokenResponse.data.refresh_token;
 
-    // Get user info
-    const userResponse = await axios.get("https://www.googleapis.com/oauth2/v2/userinfo", {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
+    const userResponse = await axios.get(
+      "https://www.googleapis.com/oauth2/v2/userinfo",
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }
+    );
 
     const user = userResponse.data;
-    // TODO: Create session or generate JWT
-    res.json({ message: "Google login successful", user });
+
+    res.json({
+      message: "Google login successful",
+      accessToken,
+      refreshToken,
+      user,
+    });
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Error during Google authentication");
   }
 });
+
 
 export default router;
