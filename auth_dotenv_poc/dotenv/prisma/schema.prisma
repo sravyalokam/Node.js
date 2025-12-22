@@ -17,6 +17,7 @@ model User {
   email     String   @unique
   password  String
   refreshToken String?
+  tokenVersion Int @default(0)
   role       String 
   createdAt DateTime @default(now())
 }

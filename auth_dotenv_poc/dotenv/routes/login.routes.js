@@ -1,5 +1,5 @@
 import express from "express";
-import { loginAccount, registerAccount, getUserProfile } from "../controllers/auth.controller.js";
+import { loginAccount, registerAccount, getUserProfile, logoutAccount, deleteAccount } from "../controllers/auth.controller.js";
 import { validateBody, registerSchema, validateParams, userIdParamSchema, loginSchema } from "../middleware/validations.middleware.js";
 import { authenticate, authorizeRoles } from "../middleware/auth.middleware.js";
 
@@ -17,6 +17,8 @@ router.get(
   validateParams(userIdParamSchema),
   getUserProfile                
 );
+router.delete("/delete", authenticate, deleteAccount);
+router.get("/logout", authenticate, logoutAccount);
 
 
 export default router;

@@ -22,6 +22,7 @@ const csrfProtection = csrf({
 
 // Read env variables
 console.log("Environment:", process.env.NODE_ENV);
+console.log(process.env.WHICHNODE)
 // console.log("Database:", process.env.DB_NAME);
 // console.log("Secret:", process.env.SECRET);
 
