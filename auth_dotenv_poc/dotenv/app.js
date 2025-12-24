@@ -10,7 +10,7 @@ const ENV = process.env.NODE_ENV || "development";
 
 const allowedOrigins = [
   "http://localhost:3000",
-  // "http://127.0.0.1:5500"
+  "http://127.0.0.1:5500"
 ];
 
 app.use(cors({
