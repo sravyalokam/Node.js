@@ -17,6 +17,7 @@ import {
 const router = express.Router();
 
 router.post("/", createAccount);
+
 router.get("/", getAccounts);
 router.get("/count", countAccounts);
 router.get("/count-savings-account", countSavingsAccount);

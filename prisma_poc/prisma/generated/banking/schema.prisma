@@ -6,15 +6,16 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/banking"
 }
 
 datasource db {
   provider = "postgresql"
-  schemas= ["customer_schema","branch_schema","account_schema","transaction_schema","loan_schema","loan_payment_schema","employee_schema"]
+  schemas  = ["customer_schema", "branch_schema", "account_schema", "transaction_schema", "loan_schema", "loan_payment_schema", "employee_schema"]
 }
 
 model customers {
-  customer_id Int          @id @default(autoincrement())
+  customer_id Int     @id @default(autoincrement())
   name        String?
   email       String?
   phone       String?
@@ -22,8 +23,21 @@ model customers {
   // Relations
   accounts accounts[]
   loans    loans[]
+  docs     customer_docs[]
 
   @@map("customers_new")
+  @@schema("customer_schema")
+}
+
+model customer_docs {
+  doc_id      Int    @id @default(autoincrement())
+  customer_id Int
+  doc_type    String // e.g., "photo", "aadhar"
+  doc_url     String // path or URL to file
+
+  customer customers @relation(fields: [customer_id], references: [customer_id])
+
+  @@map("customer_docs")
   @@schema("customer_schema")
 }
 
@@ -38,15 +52,15 @@ model branches {
 }
 
 model accounts {
-  account_id   Int       @id @default(autoincrement())
+  account_id   Int     @id @default(autoincrement())
   customer_id  Int
   branch_id    Int
   account_type String?
-  balance      Decimal   @default(0.00)
+  balance      Decimal @default(0.00)
 
   // Relations
-  customer     customers @relation(fields: [customer_id], references: [customer_id])
-  branch       branches  @relation(fields: [branch_id], references: [branch_id])
+  customer     customers      @relation(fields: [customer_id], references: [customer_id])
+  branch       branches       @relation(fields: [branch_id], references: [branch_id])
   transactions transactions[]
 
   @@map("accounts_new")
@@ -68,14 +82,14 @@ model transactions {
 }
 
 model loans {
-  loan_id       Int       @id @default(autoincrement())
+  loan_id       Int      @id @default(autoincrement())
   customer_id   Int
   loan_type     String?
   amount        Decimal?
   interest_rate Decimal?
 
   // Relations
-  customer customers      @relation(fields: [customer_id], references: [customer_id])
+  customer customers       @relation(fields: [customer_id], references: [customer_id])
   payments loan_payments[]
 
   @@map("loans")
@@ -101,4 +115,3 @@ model employees2 {
 
   @@schema("employee_schema")
 }
-

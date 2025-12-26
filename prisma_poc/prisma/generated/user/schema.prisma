@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/user"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  password     String
+  refreshToken String?
+  tokenVersion Int      @default(0)
+  role         String
+  createdAt    DateTime @default(now())
+}
+
+model microsoftUser {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  password     String?
+  microsoftId  String?  @unique
+  refreshToken String?
+  role         String   @default("user")
+  createdAt    DateTime @default(now())
+}
