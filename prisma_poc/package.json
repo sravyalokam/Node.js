@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "jest --watch",
+    "prisma:banking": "prisma generate --schema=prisma/banking/schema.prisma",
+    "prisma:user": "prisma generate --schema=prisma/user/schema.prisma",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -14,12 +19,19 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "prisma": "^7.1.0"
+    "cross-env": "^10.1.0",
+    "jest": "^30.2.0",
+    "prisma": "^7.1.0",
+    "supertest": "^7.1.4"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "^7.1.0",
-    "@prisma/client": "^7.1.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
-    "pg": "^8.16.3"
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.0.2",
+    "pg": "^8.16.3",
+    "winston": "^3.19.0"
   }
 }

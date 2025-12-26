@@ -4,12 +4,12 @@ import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
 export default defineConfig({
-  schema: "prisma/schema.prisma",
+  schema: "prisma/banking/schema.prisma",
   migrations: {
-    path: "prisma/migrations",
+    path: "prisma/banking/migrations",
     seed: "node prisma/seed.js"
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: env("BANKING_DB_URL"),
   },
 });
