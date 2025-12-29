@@ -7,9 +7,9 @@ export default defineConfig({
   schema: "prisma/user/schema.prisma",
   migrations: {
     path: "prisma/user/migrations",
-    seed: "node prisma/seed.js"
+    // seed: "node prisma/ussseed.js"
   },
   datasource: {
-    url: env("BANKING_DB_URL"),
+    url: env("USER_DB_URL"),
   },
 });

@@ -1,6 +1,8 @@
-import prisma from "../../prismaClient.js";
+import "dotenv/config";
+import { PrismaClient } from "../generated/banking/index.js";
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
+
 
 async function main() {
   console.log(" Seeding Database...\n");

@@ -1,0 +1,26 @@
+# dependencies
+node_modules
+
+# git
+.git
+.gitignore
+
+# env files
+.env
+.env.*
+.env.local
+
+# docker
+Dockerfile
+.dockerignore
+
+# tests & docs
+tests
+
+# prisma
+.prisma
+
+# logs
+logs
+*.log
+

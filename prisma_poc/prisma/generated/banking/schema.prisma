@@ -32,8 +32,8 @@ model customers {
 model customer_docs {
   doc_id      Int    @id @default(autoincrement())
   customer_id Int
-  doc_type    String // e.g., "photo", "aadhar"
-  doc_url     String // path or URL to file
+  doc_type    String
+  doc_url     String
 
   customer customers @relation(fields: [customer_id], references: [customer_id])
 
