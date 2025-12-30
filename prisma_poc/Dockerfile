@@ -1,43 +1,45 @@
+# # Stage 1: Build
 # FROM node:20 AS build
-
-# # Set working directory
 # WORKDIR /app
 
-# # Copy only package files first for caching
+# # Copy dependencies & tsconfig for caching
 # COPY package*.json ./
 
-# # Install all dependencies (dev + prod)
+# # Install dev + prod dependencies
 # RUN npm ci
 
-# # Copy only source code needed for build
+# # Copy full source
 # COPY . .
 
-# # Build the app (e.g., TypeScript -> JS)
+# # Build TypeScript
 # RUN npm run build
 
-
+# # Stage 2: Production
 # FROM node:20-alpine
-
-# # Set working directory
 # WORKDIR /app
 
-# # Set Node environment to production
+# # # Set production environment
 # ENV NODE_ENV=production
 
-# # Copy compiled code from build stage
+# # Copy compiled code
 # COPY --from=build /app/dist ./dist
 
-# # Copy only package files to install production dependencies
+# # Copy production dependencies
 # COPY --from=build /app/package*.json ./
 
 # # Install only production dependencies
 # RUN npm ci --omit=dev && npm cache clean --force
 
-# # Optional: Expose port (if your app uses it)
-# EXPOSE 3000
+# # Copy Prisma schema & .env if needed
+# COPY prisma ./prisma
+# COPY .env ./
 
-# # Start the app
+# # # Expose port
+# # EXPOSE 3000
+
+# # Start app
 # CMD ["node", "dist/index.js"]
+
 
 
 FROM node:20-alpine
@@ -48,9 +50,5 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-
-ENV NODE_ENV=production
-
-EXPOSE 3000
 
 CMD ["npm", "start"]

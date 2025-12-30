@@ -6,22 +6,18 @@ datasource db {
   provider = "postgresql"
 }
 
-model Customer {
-  id    Int     @id @default(autoincrement())
-  name  String
-  email String  @unique
-  phone String?
+model emp {
+  empid    Int       @id
+  ename    String?   @db.VarChar(50)
+  jobtitle String?   @db.VarChar(50)
+  joindate DateTime? @db.Date
+  salary   Decimal?  @db.Decimal(10, 2)
+  deptno   Int?
+  dept     String?   @db.VarChar(50)
 }
 
-model Branch {
-  id         Int    @id @default(autoincrement())
-  branchName String
-  city       String
-}
-
-model Employee {
-  id     Int     @id @default(autoincrement())
-  name   String
-  age    Int
-  salary Float
+model users {
+  id   Int     @id @default(autoincrement())
+  name String? @db.VarChar(100)
+  age  Int?
 }

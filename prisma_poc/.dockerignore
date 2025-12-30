@@ -5,10 +5,7 @@ node_modules
 .git
 .gitignore
 
-# env files
-.env
-.env.*
-.env.local
+
 
 # docker
 Dockerfile
@@ -17,10 +14,9 @@ Dockerfile
 # tests & docs
 tests
 
-# prisma
+# prisma generated files
 .prisma
 
 # logs
 logs
 *.log
-

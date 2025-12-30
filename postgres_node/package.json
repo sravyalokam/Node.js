@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "@prisma/client": "^7.1.0",
+    "@prisma/adapter-pg": "^7.2.0",
+    "@prisma/client": "^7.2.0",
     "accepts": "^2.0.0",
     "body-parser": "^2.2.1",
     "bytes": "^3.1.2",
@@ -93,9 +94,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "nodemon": "^3.1.11",
-    "prisma": "^7.1.0"
+    "prisma": "^7.2.0"
   }
 }
