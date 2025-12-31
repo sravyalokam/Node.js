@@ -1,13 +1,24 @@
 import "dotenv/config";
 import { PrismaClient } from "../generated/banking/index.js";
+import { PrismaPg } from "@prisma/adapter-pg";
+import pg from "pg";
 
-const prisma = new PrismaClient();
+const { Pool } = pg;
 
+// Create a PostgreSQL connection pool
+const pool = new Pool({
+  connectionString: process.env.BANKING_DB_URL,
+});
+
+// Create the adapter
+const adapter = new PrismaPg(pool);
+
+// Initialize PrismaClient with the adapter
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log(" Seeding Database...\n");
+  console.log("🌱 Seeding Database...\n");
 
- 
   console.log("➡ Seeding branches...");
   for (let i = 1; i <= 10; i++) {
     await prisma.branches.create({
@@ -18,21 +29,18 @@ async function main() {
     });
   }
 
- 
   console.log("➡ Seeding customers...");
   for (let i = 1; i <= 200; i++) {
     await prisma.customers.create({
       data: {
         name: `Customer ${i}`,
         email: `customer${i}@gmail.com`,
-        phone: `99999000${i % 100}`,
+        phone: `99999000${String(i % 100).padStart(2, '0')}`,
       },
     });
   }
 
-
   console.log("➡ Seeding accounts...");
-
   for (let i = 1; i <= 200; i++) {
     await prisma.accounts.create({
       data: {
@@ -44,9 +52,7 @@ async function main() {
     });
   }
 
-
   console.log("➡ Seeding transactions...");
-
   for (let i = 1; i <= 1000; i++) {
     await prisma.transactions.create({
       data: {
@@ -57,9 +63,7 @@ async function main() {
     });
   }
 
-
   console.log("➡ Seeding loans...");
-
   for (let i = 1; i <= 100; i++) {
     await prisma.loans.create({
       data: {
@@ -71,9 +75,7 @@ async function main() {
     });
   }
 
- 
   console.log("➡ Seeding loan payments...");
-
   for (let i = 1; i <= 200; i++) {
     await prisma.loan_payments.create({
       data: {
@@ -83,9 +85,7 @@ async function main() {
     });
   }
 
-
   console.log("➡ Seeding employees...");
-
   for (let i = 1; i <= 20; i++) {
     await prisma.employees2.create({
       data: {
@@ -94,14 +94,15 @@ async function main() {
     });
   }
 
-  console.log("\n Seeding Completed Successfully!");
+  console.log("\n✅ Seeding Completed Successfully!");
 }
 
 main()
   .catch((e) => {
-    console.error(" Seed Error:", e);
+    console.error("❌ Seed Error:", e);
     process.exit(1);
   })
   .finally(async () => {
     await prisma.$disconnect();
+    await pool.end();
   });

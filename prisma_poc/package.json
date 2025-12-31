@@ -6,20 +6,31 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "jest --watch",
-    "prisma:banking": "prisma generate --schema=prisma/banking/schema.prisma",
-    "prisma:user": "prisma generate --schema=prisma/user/schema.prisma",
+    
+    "config:banking": "node prisma/banking/prisma.banking.config.ts",
+    "config:user": "node node prisma/user/prisma.user.config.ts",
+    
+    "prisma:banking:generate": "npm run config:banking && prisma generate",
+    "prisma:user:generate": "npm run config:user && prisma generate",
+    "prisma:generate:all": "npm run prisma:banking:generate && npm run prisma:user:generate",
+    
+    "migrate:banking": "npm run config:banking && prisma migrate dev",
+    "migrate:user": "npm run config:user && prisma migrate dev",
+    
+    "seed:banking": "node prisma/banking/seed.js",
+    "seed:user": "node prisma/user/seed.js",
+    "seed:all": "npm run seed:banking && npm run seed:user",
+    
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "start": "cross-env NODE_ENV=production node index.js",
     "build": "tsc"
-  },
-  "prisma": {
-    "seed": "node prisma/banking/seed.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/node": "^25.0.3",
     "cross-env": "^10.1.0",
     "jest": "^30.2.0",
     "prisma": "^7.1.0",

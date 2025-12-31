@@ -26,3 +26,6 @@
 {"level":"info","message":{"ip":"::1","method":"POST","url":"/login/register"},"timestamp":"2025-12-30T07:08:17.889Z"}
 {"level":"error","message":"User already exists","method":"POST","stack":"Error: User already exists\n    at file:///C:/Users/Sravya%20Lokam/OneDrive%20-%20COGNINE/Desktop/Node.js/prisma_poc/controllers/login.controller.js:49:19\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)","statusCode":409,"timestamp":"2025-12-30T07:08:18.021Z","url":"/login/register"}
 {"level":"info","message":{"ip":"::1","method":"POST","url":"/login/register"},"timestamp":"2025-12-30T07:08:21.747Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","url":"/branch/1/accounts/count"},"timestamp":"2025-12-31T07:12:24.311Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","url":"/customers"},"timestamp":"2025-12-31T07:12:44.786Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","url":"/accounts/"},"timestamp":"2025-12-31T07:13:05.024Z"}

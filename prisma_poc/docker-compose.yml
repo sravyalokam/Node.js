@@ -16,8 +16,12 @@ services:
       - .:/app
       # Prevent node_modules from being overwritten
       - /app/node_modules
+      - uploads:/app/uploads
 
     env_file:
       - .env
 
     command: npm start
+
+volumes:
+  uploads: {}
