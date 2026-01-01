@@ -29,3 +29,4 @@
 {"level":"info","message":{"ip":"::1","method":"GET","url":"/branch/1/accounts/count"},"timestamp":"2025-12-31T07:12:24.311Z"}
 {"level":"info","message":{"ip":"::1","method":"GET","url":"/customers"},"timestamp":"2025-12-31T07:12:44.786Z"}
 {"level":"info","message":{"ip":"::1","method":"GET","url":"/accounts/"},"timestamp":"2025-12-31T07:13:05.024Z"}
+{"level":"info","message":{"ip":"::1","method":"GET","url":"/accounts/"},"timestamp":"2026-01-01T12:05:46.359Z"}

@@ -12,12 +12,14 @@ const pool = new Pool({
 
 // Create the adapter
 const adapter = new PrismaPg(pool);
+// const adapter = new PrismaPg(pool);
+
 
 // Initialize PrismaClient with the adapter
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log("🌱 Seeding Database...\n");
+  console.log(" Seeding Database...\n");
 
   console.log("➡ Seeding branches...");
   for (let i = 1; i <= 10; i++) {
