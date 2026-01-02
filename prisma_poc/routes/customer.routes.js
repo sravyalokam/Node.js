@@ -10,9 +10,10 @@ import {
   countCustomersByEmail,
   uploadCustomerDoc
 } from "../controllers/customer.controller.js";
+import { authenticate, authorizeRoles } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
-
+router.use(authenticate);
 // router.get("/count", getCustomerCount);
 // router.get("/count-by-mail", countCustomersByEmail);
 // router.post("/", createCustomer);

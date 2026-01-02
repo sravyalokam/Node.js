@@ -52,17 +52,24 @@ model branches {
 }
 
 model accounts {
-  account_id   Int     @id @default(autoincrement())
-  customer_id  Int
-  branch_id    Int
-  account_type String?
-  balance      Decimal @default(0.00)
+  account_id     Int     @id @default(autoincrement())
+  account_number String? @unique
+  customer_id    Int
+  branch_id      Int
+  account_type   String?
+  balance        Decimal @default(0.00)
 
+  status String @default("active")
+
+  created_at   DateTime       @default(now())
+  updated_at   DateTime?      @updatedAt
   // Relations
   customer     customers      @relation(fields: [customer_id], references: [customer_id])
   branch       branches       @relation(fields: [branch_id], references: [branch_id])
   transactions transactions[]
 
+  @@index([customer_id])
+  @@index([account_number])
   @@map("accounts_new")
   @@schema("account_schema")
 }

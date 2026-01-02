@@ -14,9 +14,9 @@
     "prisma:user:generate": "npm run config:user && prisma generate",
     "prisma:generate:all": "npm run prisma:banking:generate && npm run prisma:user:generate",
     
-    "migrate:banking": "npm run config:banking && prisma migrate dev",
-    "migrate:user": "npm run config:user && prisma migrate dev",
-    
+    "migrate:banking": "prisma migrate dev --config=prisma.banking.config.ts --schema=./prisma/banking/schema.prisma",
+    "migrate:user": "prisma migrate dev --config=prisma.user.config.ts --schema=./prisma/user/schema.prisma",
+
     "seed:banking": "node prisma/banking/seed.js",
     "seed:user": "node prisma/user/seed.js",
     "seed:all": "npm run seed:banking && npm run seed:user",

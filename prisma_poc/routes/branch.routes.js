@@ -10,9 +10,11 @@ import {
   getBranchesPaginated,
   getCountByBranch
 } from "../controllers/branch.controller.js";
+import { authenticate, authorizeRoles } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
+router.use(authenticate);
 router.post("/", createBranch);
 
 router.get("/count", getBranchCount);

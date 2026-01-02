@@ -4976,26 +4976,38 @@ export namespace Prisma {
 
   export type AccountsMinAggregateOutputType = {
     account_id: number | null
+    account_number: string | null
     customer_id: number | null
     branch_id: number | null
     account_type: string | null
     balance: Decimal | null
+    status: string | null
+    created_at: Date | null
+    updated_at: Date | null
   }
 
   export type AccountsMaxAggregateOutputType = {
     account_id: number | null
+    account_number: string | null
     customer_id: number | null
     branch_id: number | null
     account_type: string | null
     balance: Decimal | null
+    status: string | null
+    created_at: Date | null
+    updated_at: Date | null
   }
 
   export type AccountsCountAggregateOutputType = {
     account_id: number
+    account_number: number
     customer_id: number
     branch_id: number
     account_type: number
     balance: number
+    status: number
+    created_at: number
+    updated_at: number
     _all: number
   }
 
@@ -5016,26 +5028,38 @@ export namespace Prisma {
 
   export type AccountsMinAggregateInputType = {
     account_id?: true
+    account_number?: true
     customer_id?: true
     branch_id?: true
     account_type?: true
     balance?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type AccountsMaxAggregateInputType = {
     account_id?: true
+    account_number?: true
     customer_id?: true
     branch_id?: true
     account_type?: true
     balance?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
   }
 
   export type AccountsCountAggregateInputType = {
     account_id?: true
+    account_number?: true
     customer_id?: true
     branch_id?: true
     account_type?: true
     balance?: true
+    status?: true
+    created_at?: true
+    updated_at?: true
     _all?: true
   }
 
@@ -5127,10 +5151,14 @@ export namespace Prisma {
 
   export type AccountsGroupByOutputType = {
     account_id: number
+    account_number: string | null
     customer_id: number
     branch_id: number
     account_type: string | null
     balance: Decimal
+    status: string
+    created_at: Date
+    updated_at: Date | null
     _count: AccountsCountAggregateOutputType | null
     _avg: AccountsAvgAggregateOutputType | null
     _sum: AccountsSumAggregateOutputType | null
@@ -5154,10 +5182,14 @@ export namespace Prisma {
 
   export type accountsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     account_id?: boolean
+    account_number?: boolean
     customer_id?: boolean
     branch_id?: boolean
     account_type?: boolean
     balance?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     customer?: boolean | customersDefaultArgs<ExtArgs>
     branch?: boolean | branchesDefaultArgs<ExtArgs>
     transactions?: boolean | accounts$transactionsArgs<ExtArgs>
@@ -5166,33 +5198,45 @@ export namespace Prisma {
 
   export type accountsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     account_id?: boolean
+    account_number?: boolean
     customer_id?: boolean
     branch_id?: boolean
     account_type?: boolean
     balance?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     customer?: boolean | customersDefaultArgs<ExtArgs>
     branch?: boolean | branchesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["accounts"]>
 
   export type accountsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     account_id?: boolean
+    account_number?: boolean
     customer_id?: boolean
     branch_id?: boolean
     account_type?: boolean
     balance?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
     customer?: boolean | customersDefaultArgs<ExtArgs>
     branch?: boolean | branchesDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["accounts"]>
 
   export type accountsSelectScalar = {
     account_id?: boolean
+    account_number?: boolean
     customer_id?: boolean
     branch_id?: boolean
     account_type?: boolean
     balance?: boolean
+    status?: boolean
+    created_at?: boolean
+    updated_at?: boolean
   }
 
-  export type accountsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"account_id" | "customer_id" | "branch_id" | "account_type" | "balance", ExtArgs["result"]["accounts"]>
+  export type accountsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"account_id" | "account_number" | "customer_id" | "branch_id" | "account_type" | "balance" | "status" | "created_at" | "updated_at", ExtArgs["result"]["accounts"]>
   export type accountsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | customersDefaultArgs<ExtArgs>
     branch?: boolean | branchesDefaultArgs<ExtArgs>
@@ -5217,10 +5261,14 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       account_id: number
+      account_number: string | null
       customer_id: number
       branch_id: number
       account_type: string | null
       balance: Prisma.Decimal
+      status: string
+      created_at: Date
+      updated_at: Date | null
     }, ExtArgs["result"]["accounts"]>
     composites: {}
   }
@@ -5648,10 +5696,14 @@ export namespace Prisma {
    */
   interface accountsFieldRefs {
     readonly account_id: FieldRef<"accounts", 'Int'>
+    readonly account_number: FieldRef<"accounts", 'String'>
     readonly customer_id: FieldRef<"accounts", 'Int'>
     readonly branch_id: FieldRef<"accounts", 'Int'>
     readonly account_type: FieldRef<"accounts", 'String'>
     readonly balance: FieldRef<"accounts", 'Decimal'>
+    readonly status: FieldRef<"accounts", 'String'>
+    readonly created_at: FieldRef<"accounts", 'DateTime'>
+    readonly updated_at: FieldRef<"accounts", 'DateTime'>
   }
     
 
@@ -10446,10 +10498,14 @@ export namespace Prisma {
 
   export const AccountsScalarFieldEnum: {
     account_id: 'account_id',
+    account_number: 'account_number',
     customer_id: 'customer_id',
     branch_id: 'branch_id',
     account_type: 'account_type',
-    balance: 'balance'
+    balance: 'balance',
+    status: 'status',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
   };
 
   export type AccountsScalarFieldEnum = (typeof AccountsScalarFieldEnum)[keyof typeof AccountsScalarFieldEnum]
@@ -10759,10 +10815,14 @@ export namespace Prisma {
     OR?: accountsWhereInput[]
     NOT?: accountsWhereInput | accountsWhereInput[]
     account_id?: IntFilter<"accounts"> | number
+    account_number?: StringNullableFilter<"accounts"> | string | null
     customer_id?: IntFilter<"accounts"> | number
     branch_id?: IntFilter<"accounts"> | number
     account_type?: StringNullableFilter<"accounts"> | string | null
     balance?: DecimalFilter<"accounts"> | Decimal | DecimalJsLike | number | string
+    status?: StringFilter<"accounts"> | string
+    created_at?: DateTimeFilter<"accounts"> | Date | string
+    updated_at?: DateTimeNullableFilter<"accounts"> | Date | string | null
     customer?: XOR<CustomersScalarRelationFilter, customersWhereInput>
     branch?: XOR<BranchesScalarRelationFilter, branchesWhereInput>
     transactions?: TransactionsListRelationFilter
@@ -10770,10 +10830,14 @@ export namespace Prisma {
 
   export type accountsOrderByWithRelationInput = {
     account_id?: SortOrder
+    account_number?: SortOrderInput | SortOrder
     customer_id?: SortOrder
     branch_id?: SortOrder
     account_type?: SortOrderInput | SortOrder
     balance?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
     customer?: customersOrderByWithRelationInput
     branch?: branchesOrderByWithRelationInput
     transactions?: transactionsOrderByRelationAggregateInput
@@ -10781,6 +10845,7 @@ export namespace Prisma {
 
   export type accountsWhereUniqueInput = Prisma.AtLeast<{
     account_id?: number
+    account_number?: string
     AND?: accountsWhereInput | accountsWhereInput[]
     OR?: accountsWhereInput[]
     NOT?: accountsWhereInput | accountsWhereInput[]
@@ -10788,17 +10853,24 @@ export namespace Prisma {
     branch_id?: IntFilter<"accounts"> | number
     account_type?: StringNullableFilter<"accounts"> | string | null
     balance?: DecimalFilter<"accounts"> | Decimal | DecimalJsLike | number | string
+    status?: StringFilter<"accounts"> | string
+    created_at?: DateTimeFilter<"accounts"> | Date | string
+    updated_at?: DateTimeNullableFilter<"accounts"> | Date | string | null
     customer?: XOR<CustomersScalarRelationFilter, customersWhereInput>
     branch?: XOR<BranchesScalarRelationFilter, branchesWhereInput>
     transactions?: TransactionsListRelationFilter
-  }, "account_id">
+  }, "account_id" | "account_number">
 
   export type accountsOrderByWithAggregationInput = {
     account_id?: SortOrder
+    account_number?: SortOrderInput | SortOrder
     customer_id?: SortOrder
     branch_id?: SortOrder
     account_type?: SortOrderInput | SortOrder
     balance?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrderInput | SortOrder
     _count?: accountsCountOrderByAggregateInput
     _avg?: accountsAvgOrderByAggregateInput
     _max?: accountsMaxOrderByAggregateInput
@@ -10811,10 +10883,14 @@ export namespace Prisma {
     OR?: accountsScalarWhereWithAggregatesInput[]
     NOT?: accountsScalarWhereWithAggregatesInput | accountsScalarWhereWithAggregatesInput[]
     account_id?: IntWithAggregatesFilter<"accounts"> | number
+    account_number?: StringNullableWithAggregatesFilter<"accounts"> | string | null
     customer_id?: IntWithAggregatesFilter<"accounts"> | number
     branch_id?: IntWithAggregatesFilter<"accounts"> | number
     account_type?: StringNullableWithAggregatesFilter<"accounts"> | string | null
     balance?: DecimalWithAggregatesFilter<"accounts"> | Decimal | DecimalJsLike | number | string
+    status?: StringWithAggregatesFilter<"accounts"> | string
+    created_at?: DateTimeWithAggregatesFilter<"accounts"> | Date | string
+    updated_at?: DateTimeNullableWithAggregatesFilter<"accounts"> | Date | string | null
   }
 
   export type transactionsWhereInput = {
@@ -11172,8 +11248,12 @@ export namespace Prisma {
   }
 
   export type accountsCreateInput = {
+    account_number?: string | null
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     customer: customersCreateNestedOneWithoutAccountsInput
     branch: branchesCreateNestedOneWithoutAccountsInput
     transactions?: transactionsCreateNestedManyWithoutAccountInput
@@ -11181,16 +11261,24 @@ export namespace Prisma {
 
   export type accountsUncheckedCreateInput = {
     account_id?: number
+    account_number?: string | null
     customer_id: number
     branch_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     transactions?: transactionsUncheckedCreateNestedManyWithoutAccountInput
   }
 
   export type accountsUpdateInput = {
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customersUpdateOneRequiredWithoutAccountsNestedInput
     branch?: branchesUpdateOneRequiredWithoutAccountsNestedInput
     transactions?: transactionsUpdateManyWithoutAccountNestedInput
@@ -11198,32 +11286,48 @@ export namespace Prisma {
 
   export type accountsUncheckedUpdateInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     customer_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transactions?: transactionsUncheckedUpdateManyWithoutAccountNestedInput
   }
 
   export type accountsCreateManyInput = {
     account_id?: number
+    account_number?: string | null
     customer_id: number
     branch_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
   }
 
   export type accountsUpdateManyMutationInput = {
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type accountsUncheckedUpdateManyInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     customer_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type transactionsCreateInput = {
@@ -11641,6 +11745,28 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type BranchesScalarRelationFilter = {
     is?: branchesWhereInput
     isNot?: branchesWhereInput
@@ -11658,10 +11784,14 @@ export namespace Prisma {
 
   export type accountsCountOrderByAggregateInput = {
     account_id?: SortOrder
+    account_number?: SortOrder
     customer_id?: SortOrder
     branch_id?: SortOrder
     account_type?: SortOrder
     balance?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type accountsAvgOrderByAggregateInput = {
@@ -11673,18 +11803,26 @@ export namespace Prisma {
 
   export type accountsMaxOrderByAggregateInput = {
     account_id?: SortOrder
+    account_number?: SortOrder
     customer_id?: SortOrder
     branch_id?: SortOrder
     account_type?: SortOrder
     balance?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type accountsMinOrderByAggregateInput = {
     account_id?: SortOrder
+    account_number?: SortOrder
     customer_id?: SortOrder
     branch_id?: SortOrder
     account_type?: SortOrder
     balance?: SortOrder
+    status?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
   }
 
   export type accountsSumOrderByAggregateInput = {
@@ -11710,6 +11848,34 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type DecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -11719,17 +11885,6 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type AccountsScalarRelationFilter = {
@@ -11787,20 +11942,6 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type Loan_paymentsListRelationFilter = {
@@ -12144,6 +12285,14 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type customersUpdateOneRequiredWithoutAccountsNestedInput = {
     create?: XOR<customersCreateWithoutAccountsInput, customersUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: customersCreateOrConnectWithoutAccountsInput
@@ -12200,10 +12349,6 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type accountsUpdateOneRequiredWithoutTransactionsNestedInput = {
@@ -12406,6 +12551,28 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -12422,6 +12589,34 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -12431,17 +12626,6 @@ export namespace Prisma {
     gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12460,32 +12644,26 @@ export namespace Prisma {
     _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type accountsCreateWithoutCustomerInput = {
+    account_number?: string | null
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     branch: branchesCreateNestedOneWithoutAccountsInput
     transactions?: transactionsCreateNestedManyWithoutAccountInput
   }
 
   export type accountsUncheckedCreateWithoutCustomerInput = {
     account_id?: number
+    account_number?: string | null
     branch_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     transactions?: transactionsUncheckedCreateNestedManyWithoutAccountInput
   }
 
@@ -12566,10 +12744,14 @@ export namespace Prisma {
     OR?: accountsScalarWhereInput[]
     NOT?: accountsScalarWhereInput | accountsScalarWhereInput[]
     account_id?: IntFilter<"accounts"> | number
+    account_number?: StringNullableFilter<"accounts"> | string | null
     customer_id?: IntFilter<"accounts"> | number
     branch_id?: IntFilter<"accounts"> | number
     account_type?: StringNullableFilter<"accounts"> | string | null
     balance?: DecimalFilter<"accounts"> | Decimal | DecimalJsLike | number | string
+    status?: StringFilter<"accounts"> | string
+    created_at?: DateTimeFilter<"accounts"> | Date | string
+    updated_at?: DateTimeNullableFilter<"accounts"> | Date | string | null
   }
 
   export type loansUpsertWithWhereUniqueWithoutCustomerInput = {
@@ -12676,17 +12858,25 @@ export namespace Prisma {
   }
 
   export type accountsCreateWithoutBranchInput = {
+    account_number?: string | null
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     customer: customersCreateNestedOneWithoutAccountsInput
     transactions?: transactionsCreateNestedManyWithoutAccountInput
   }
 
   export type accountsUncheckedCreateWithoutBranchInput = {
     account_id?: number
+    account_number?: string | null
     customer_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     transactions?: transactionsUncheckedCreateNestedManyWithoutAccountInput
   }
 
@@ -12855,18 +13045,26 @@ export namespace Prisma {
   }
 
   export type accountsCreateWithoutTransactionsInput = {
+    account_number?: string | null
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
     customer: customersCreateNestedOneWithoutAccountsInput
     branch: branchesCreateNestedOneWithoutAccountsInput
   }
 
   export type accountsUncheckedCreateWithoutTransactionsInput = {
     account_id?: number
+    account_number?: string | null
     customer_id: number
     branch_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
   }
 
   export type accountsCreateOrConnectWithoutTransactionsInput = {
@@ -12886,18 +13084,26 @@ export namespace Prisma {
   }
 
   export type accountsUpdateWithoutTransactionsInput = {
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customersUpdateOneRequiredWithoutAccountsNestedInput
     branch?: branchesUpdateOneRequiredWithoutAccountsNestedInput
   }
 
   export type accountsUncheckedUpdateWithoutTransactionsInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     customer_id?: IntFieldUpdateOperationsInput | number
     branch_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type customersCreateWithoutLoansInput = {
@@ -13045,9 +13251,13 @@ export namespace Prisma {
 
   export type accountsCreateManyCustomerInput = {
     account_id?: number
+    account_number?: string | null
     branch_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
   }
 
   export type loansCreateManyCustomerInput = {
@@ -13064,25 +13274,37 @@ export namespace Prisma {
   }
 
   export type accountsUpdateWithoutCustomerInput = {
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     branch?: branchesUpdateOneRequiredWithoutAccountsNestedInput
     transactions?: transactionsUpdateManyWithoutAccountNestedInput
   }
 
   export type accountsUncheckedUpdateWithoutCustomerInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     branch_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transactions?: transactionsUncheckedUpdateManyWithoutAccountNestedInput
   }
 
   export type accountsUncheckedUpdateManyWithoutCustomerInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     branch_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type loansUpdateWithoutCustomerInput = {
@@ -13126,31 +13348,47 @@ export namespace Prisma {
 
   export type accountsCreateManyBranchInput = {
     account_id?: number
+    account_number?: string | null
     customer_id: number
     account_type?: string | null
     balance?: Decimal | DecimalJsLike | number | string
+    status?: string
+    created_at?: Date | string
+    updated_at?: Date | string | null
   }
 
   export type accountsUpdateWithoutBranchInput = {
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: customersUpdateOneRequiredWithoutAccountsNestedInput
     transactions?: transactionsUpdateManyWithoutAccountNestedInput
   }
 
   export type accountsUncheckedUpdateWithoutBranchInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     customer_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     transactions?: transactionsUncheckedUpdateManyWithoutAccountNestedInput
   }
 
   export type accountsUncheckedUpdateManyWithoutBranchInput = {
     account_id?: IntFieldUpdateOperationsInput | number
+    account_number?: NullableStringFieldUpdateOperationsInput | string | null
     customer_id?: IntFieldUpdateOperationsInput | number
     account_type?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    status?: StringFieldUpdateOperationsInput | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type transactionsCreateManyAccountInput = {

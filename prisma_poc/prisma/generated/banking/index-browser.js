@@ -142,10 +142,14 @@ exports.Prisma.BranchesScalarFieldEnum = {
 
 exports.Prisma.AccountsScalarFieldEnum = {
   account_id: 'account_id',
+  account_number: 'account_number',
   customer_id: 'customer_id',
   branch_id: 'branch_id',
   account_type: 'account_type',
-  balance: 'balance'
+  balance: 'balance',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 };
 
 exports.Prisma.TransactionsScalarFieldEnum = {

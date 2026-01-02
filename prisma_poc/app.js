@@ -21,13 +21,13 @@ app.use(requestLogger);
 app.get("/", (req, res) => {
   res.json({ message: "API is running" });
 });
-app.use("/login", loginRoutes);
-app.use("/customers", customerRoutes);
-app.use("/branches", branchRoutes);
-app.use("/accounts", accountRoutes);
-app.use("/transactions", transactionRoutes);
-app.use("/loans", loanRoutes);
-app.use("/loan-payments", loanPaymentRoutes);
+app.use("/api/login", loginRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api/branches", branchRoutes);
+app.use("/api/accounts", accountRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use("/api/loans", loanRoutes);
+app.use("/api/loan-payments", loanPaymentRoutes);
 // app.use("/employees", employeeRoutes);
 app.use((req, res, next) => {
   res.status(404).json({

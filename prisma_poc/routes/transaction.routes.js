@@ -7,8 +7,11 @@ import {
   getAverageTransactionAmountByAccount,
   getTodayTransactions
 } from "../controllers/transaction.controller.js";
+import { authenticate, authorizeRoles } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
+
+router.use(authenticate);
 
 router.post("/", createTransaction);
 router.get("/", getTransactions);
